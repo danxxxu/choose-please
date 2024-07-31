@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Choose Please</title>
+  </head>
+  <style>
+    /* table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    } */
+
+    table {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 745px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 900;
+      font-size: 64px;
+      font-style: italic;
+      text-align: left;
+    }
+  </style>
+  <body>
+    <table>
+      <tr>
+        <th class="wh" style="width: 300px">What</th>
+        <th style="width: 250px">You</th>
+        <th class="do">Have</th>
+      </tr>
+      <tr>
+        <th class="wh">Where</th>
+        <th>You</th>
+        <th class="do">Want</th>
+      </tr>
+      <tr>
+        <th class="wh">When</th>
+        <th>You</th>
+        <th class="do">Need</th>
+      </tr>
+    </table>
+    <script>
+      const wh = ["What", "Where", "When"];
+      const verb = ["Have", "Want", "Need"];
+
+      document.addEventListener("load", randomise);
+      document.addEventListener("click", randomise);
+
+      function randomise() {
+        const allWh = document.querySelectorAll(".wh");
+        const allDo = document.querySelectorAll(".do");
+
+        const wh0 = getRandomInt(3);
+        const verb0 = getRandomInt(3);
+        allWh[0].innerHTML = wh[wh0];
+        allDo[0].innerHTML = verb[verb0];
+
+        let updateWh = updateArray(wh, wh[wh0]);
+        let updateVerb = updateArray(verb, verb[verb0]);
+        const wh1 = getRandomInt(2);
+        const verb1 = getRandomInt(2);
+        allWh[1].innerHTML = updateWh[wh1];
+        updateWh.splice(wh1, 1);
+        allWh[2].innerHTML = updateWh[0];
+
+        allDo[1].innerHTML = updateVerb[verb1];
+        updateVerb.splice(verb1, 1);
+        allDo[2].innerHTML = updateVerb[0];
+      }
+
+      function updateArray(array, avoid) {
+        let updateArray = [];
+        array.forEach((a) => {
+          if (a != avoid) {
+            updateArray.push(a);
+          }
+        });
+        return updateArray;
+      }
+
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
+    </script>
+  </body>
+</html>
